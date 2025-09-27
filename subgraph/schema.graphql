@@ -1,7 +1,7 @@
 # ZK DigiLocker GraphQL Schema
 # Optimized for ENS-based queries and verification lookups
 
-type User @entity {
+type User @entity(immutable: false) {
   id: ID! # wallet address
   ensName: String! # ENS name like "ishita-bhardwaj-abc123.zkdigilocker"
   profile: Profile! # one-to-one relationship
@@ -10,7 +10,7 @@ type User @entity {
   updatedAt: BigInt!
 }
 
-type Profile @entity {
+type Profile @entity(immutable: false) {
   id: ID! # same as user ID (wallet address)
   user: User!
   ensName: String! # for easy ENS-based queries
@@ -26,7 +26,7 @@ type Profile @entity {
   isActive: Boolean! # for soft deletion/deactivation
 }
 
-type Verification @entity {
+type Verification @entity(immutable: true) {
   id: ID! # transaction hash
   user: User!
   ensName: String!
@@ -44,7 +44,7 @@ type Verification @entity {
 }
 
 # Query optimization entities
-type ENSQuery @entity {
+type ENSQuery @entity(immutable: false) {
   id: ID! # ENS name
   ensName: String!
   user: User!
@@ -54,7 +54,7 @@ type ENSQuery @entity {
 }
 
 # Analytics entities for hackathon demo
-type DailyStats @entity {
+type DailyStats @entity(immutable: false) {
   id: ID! # date string YYYY-MM-DD
   date: String!
   totalVerifications: BigInt!

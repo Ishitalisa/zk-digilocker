@@ -6,9 +6,9 @@ dataSources:
     name: ProfileManager
     network: sepolia
     source:
-      address: "PROFILE_MANAGER_CONTRACT_ADDRESS" # UPDATE AFTER DEPLOYMENT
+      address: "0xb8fcd9a99a7c6d4cd6b30da141713034ce85d823" # ProfileManager deployed address
       abi: ProfileManager
-      startBlock: 0 # UPDATE AFTER DEPLOYMENT
+      startBlock: 6900000 # Recent Sepolia block
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

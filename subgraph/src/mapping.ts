@@ -35,7 +35,7 @@ export function handleProfileVerified(event: ProfileVerified): void {
   if (!user) {
     user = new User(userAddress)
     user.createdAt = event.block.timestamp
-    user.verifications = []
+    // Note: verifications is @derivedFrom, don't assign directly
   }
   user.ensName = ensName
   user.updatedAt = event.block.timestamp

@@ -8,8 +8,8 @@ import { ENSManager, useENSProfile } from './utils/ensManager';
 import QueryDashboard from './components/QueryDashboard';
 import './App.css';
 
-// Contract configuration (UPDATE AFTER DEPLOYMENT)
-const PROFILE_MANAGER_ADDRESS = '0x...'; // UPDATE WITH DEPLOYED ADDRESS
+// Contract configuration - DEPLOYED ON SEPOLIA
+const PROFILE_MANAGER_ADDRESS = '0xb8fcd9a99a7c6d4cd6b30da141713034ce85d823'; // ProfileManager deployed address
 const PROFILE_MANAGER_ABI = [
   {
     "inputs": [
