@@ -9,13 +9,12 @@
     "subgraph"
   ],
   "scripts": {
-    "prepare": "husky install",
     "build": "yarn workspaces run build",
-    "test": "yarn workspaces run test"
+    "test": "yarn workspaces run test",
+    "clean": "yarn workspaces run clean"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "husky": "^8.0.0",
     "typescript": "^5.0.4"
   }
 }

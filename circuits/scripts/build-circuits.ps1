@@ -8,9 +8,9 @@ Write-Host "Compiling circuit..."
 circom ..\passportVerifier.circom --r1cs --wasm --sym -o $buildDir
 
 Write-Host "Downloading Powers of Tau file..."
-$ptauFile = Join-Path $PSScriptRoot "..\build\pot12_final.ptau"
+$ptauFile = Join-Path $buildDir "pot12_final.ptau"
 if (!(Test-Path $ptauFile)) {
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/iden3/snarkjs/master/templates/powersOfTau28_hez_final_12.ptau" -OutFile $ptauFile
+    Invoke-WebRequest -Uri "https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_12.ptau" -OutFile $ptauFile
 }
 
 Write-Host "Generating witness..."
