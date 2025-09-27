@@ -2,7 +2,7 @@
 import { createClient } from '@urql/core';
 
 // The Graph endpoint (update after subgraph deployment)
-const GRAPH_ENDPOINT = 'https://api.thegraph.com/subgraphs/name/ishitalisa/zk-digilocker';
+const GRAPH_ENDPOINT = 'https://api.studio.thegraph.com/query/121741/zk-digi-locker/v0.0.1';
 
 export const graphClient = createClient({
   url: GRAPH_ENDPOINT,
