@@ -5,7 +5,8 @@ if (!(Test-Path $buildDir)) {
 }
 
 Write-Host "Compiling circuit..."
-circom ..\passportVerifier.circom --r1cs --wasm --sym -o $buildDir
+$circuitPath = Join-Path $PSScriptRoot "..\passportVerifier.circom"
+circom $circuitPath --r1cs --wasm --sym -o $buildDir
 
 Write-Host "Downloading Powers of Tau file..."
 $ptauFile = Join-Path $buildDir "pot12_final.ptau"

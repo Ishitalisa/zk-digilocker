@@ -1,0 +1,96 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isAdult",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isIndian",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "hasExpired",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "ensName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "ProfileVerified",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "ensName",
+        "type": "string"
+      }
+    ],
+    "name": "getProfileByENS",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bool",
+            "name": "isAdult",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isIndian",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasExpired",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "verifiedAt",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "ensName",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ProfileManager.Profile",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

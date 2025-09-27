@@ -1,0 +1,137 @@
+# Sample GraphQL queries for ZK DigiLocker
+
+# Query user profile by ENS name (main company use case)
+query GetProfileByENS($ensName: String!) {
+  profiles(where: { ensName: $ensName }) {
+    id
+    ensName
+    isAdult
+    isIndian
+    hasExpired
+    verifiedAt
+    lastUpdated
+    user {
+      id
+      createdAt
+    }
+  }
+}
+
+# Query user by wallet address
+query GetUserByAddress($address: String!) {
+  user(id: $address) {
+    id
+    ensName
+    profile {
+      isAdult
+      isIndian
+      hasExpired
+      verifiedAt
+    }
+    verifications {
+      id
+      timestamp
+      transactionHash
+    }
+  }
+}
+
+# Query verification history
+query GetVerificationHistory($userAddress: String!) {
+  verifications(
+    where: { user: $userAddress }
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    id
+    ensName
+    isAdult
+    isIndian
+    hasExpired
+    timestamp
+    transactionHash
+    blockNumber
+  }
+}
+
+# Search profiles by criteria (for analytics)
+query SearchProfiles($isAdult: Boolean, $isIndian: Boolean) {
+  profiles(
+    where: { 
+      isAdult: $isAdult, 
+      isIndian: $isIndian,
+      isActive: true
+    }
+    orderBy: verifiedAt
+    orderDirection: desc
+  ) {
+    id
+    ensName
+    isAdult
+    isIndian
+    hasExpired
+    verifiedAt
+  }
+}
+
+# Get daily statistics for dashboard
+query GetDailyStats($from: String!, $to: String!) {
+  dailyStats(
+    where: { 
+      date_gte: $from, 
+      date_lte: $to 
+    }
+    orderBy: date
+    orderDirection: asc
+  ) {
+    id
+    date
+    totalVerifications
+    totalUsers
+    adultUsers
+    indianUsers
+    expiredDocuments
+  }
+}
+
+# Get all ENS queries (for company analytics)
+query GetENSQueries {
+  ensQueries(
+    orderBy: queryCount
+    orderDirection: desc
+    first: 100
+  ) {
+    id
+    ensName
+    queryCount
+    lastQueried
+    user {
+      id
+    }
+    profile {
+      isAdult
+      isIndian
+      hasExpired
+    }
+  }
+}
+
+# Get recent verifications (for monitoring)
+query GetRecentVerifications($limit: Int = 10) {
+  verifications(
+    orderBy: timestamp
+    orderDirection: desc
+    first: $limit
+  ) {
+    id
+    ensName
+    user {
+      id
+    }
+    isAdult
+    isIndian
+    hasExpired
+    timestamp
+    transactionHash
+  }
+}

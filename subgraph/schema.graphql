@@ -1,0 +1,65 @@
+# ZK DigiLocker GraphQL Schema
+# Optimized for ENS-based queries and verification lookups
+
+type User @entity {
+  id: ID! # wallet address
+  ensName: String! # ENS name like "ishita-bhardwaj-abc123.zkdigilocker"
+  profile: Profile! # one-to-one relationship
+  verifications: [Verification!]! @derivedFrom(field: "user")
+  createdAt: BigInt!
+  updatedAt: BigInt!
+}
+
+type Profile @entity {
+  id: ID! # same as user ID (wallet address)
+  user: User!
+  ensName: String! # for easy ENS-based queries
+  
+  # Verification results (ZK proof outputs)
+  isAdult: Boolean! # age >= 18
+  isIndian: Boolean! # nationality == "INDIAN"
+  hasExpired: Boolean! # document expired status
+  
+  # Metadata
+  verifiedAt: BigInt!
+  lastUpdated: BigInt!
+  isActive: Boolean! # for soft deletion/deactivation
+}
+
+type Verification @entity {
+  id: ID! # transaction hash
+  user: User!
+  ensName: String!
+  
+  # ZK Proof verification results
+  isAdult: Boolean!
+  isIndian: Boolean!
+  hasExpired: Boolean!
+  
+  # Blockchain data
+  transactionHash: String!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  gasUsed: BigInt
+}
+
+# Query optimization entities
+type ENSQuery @entity {
+  id: ID! # ENS name
+  ensName: String!
+  user: User!
+  profile: Profile!
+  queryCount: BigInt! # analytics
+  lastQueried: BigInt!
+}
+
+# Analytics entities for hackathon demo
+type DailyStats @entity {
+  id: ID! # date string YYYY-MM-DD
+  date: String!
+  totalVerifications: BigInt!
+  totalUsers: BigInt!
+  adultUsers: BigInt!
+  indianUsers: BigInt!
+  expiredDocuments: BigInt!
+}

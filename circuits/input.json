@@ -1,5 +1,5 @@
 {
-    "age": [49, 56],
-    "nationality": [73, 78, 68, 73, 65, 78],
-    "expiryStatus": [78, 79]
+    "age": 10,
+    "nationality": 1,
+    "expiryStatus": 0
 }

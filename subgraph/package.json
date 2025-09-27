@@ -1,0 +1,17 @@
+{
+  "name": "@zk-digilocker/subgraph",
+  "version": "1.0.0",
+  "description": "The Graph subgraph for ZK DigiLocker",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --product hosted-service ishitalisa/zk-digilocker",
+    "create-local": "graph create --node http://localhost:8020/ zk-digilocker",
+    "remove-local": "graph remove --node http://localhost:8020/ zk-digilocker",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 zk-digilocker"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.67.4",
+    "@graphprotocol/graph-ts": "0.31.0"
+  }
+}

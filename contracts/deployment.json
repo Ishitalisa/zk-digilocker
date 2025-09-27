@@ -1,0 +1,6 @@
+{
+  "network": "sepolia",
+  "verifier": "DEPLOY_ADDRESS_HERE",
+  "profileManager": "DEPLOY_ADDRESS_HERE",
+  "deployer": "MISSING"
+}
